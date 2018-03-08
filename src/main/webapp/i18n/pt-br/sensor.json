@@ -1,0 +1,23 @@
+{
+    "westationApp": {
+        "sensor" : {
+            "home": {
+                "title": "Sensors",
+                "createLabel": "Criar novo Sensor",
+                "createOrEditLabel": "Criar ou editar Sensor"
+            },
+            "created": "Um novo Sensor foi criado com o identificador {{ param }}",
+            "updated": "Um Sensor foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Sensor foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Sensor {{ id }}?"
+            },
+            "detail": {
+                "title": "Sensor"
+            },
+            "name": "Name",
+            "topic": "Topic",
+            "threshold": "Threshold"
+        }
+    }
+}

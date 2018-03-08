@@ -1,0 +1,8 @@
+{
+    "home": {
+        "title": "Welcome to WeStation!",
+        "logged": {
+            "message": "You are logged in as user \"{{username}}\"."
+        }
+    }
+}

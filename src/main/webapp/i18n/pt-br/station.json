@@ -1,0 +1,27 @@
+{
+    "westationApp": {
+        "station" : {
+            "home": {
+                "title": "Stations",
+                "createLabel": "Criar novo Station",
+                "createOrEditLabel": "Criar ou editar Station"
+            },
+            "created": "Um novo Station foi criado com o identificador {{ param }}",
+            "updated": "Um Station foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Station foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Station {{ id }}?"
+            },
+            "detail": {
+                "title": "Station"
+            },
+            "name": "Name",
+            "port": "Port",
+            "sufix": "Sufix",
+            "longitude": "Longitude",
+            "latitude": "Latitude",
+            "ip": "Ip",
+            "sensor": "Sensor"
+        }
+    }
+}

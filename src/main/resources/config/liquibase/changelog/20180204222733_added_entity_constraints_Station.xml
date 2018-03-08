@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Station.
+    -->
+    <changeSet id="20180204222733-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="stations_id"
+                                 baseTableName="station_sensor"
+                                 constraintName="fk_station_sensor_stations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="station"/>
+        <addForeignKeyConstraint baseColumnNames="sensors_id"
+                                 baseTableName="station_sensor"
+                                 constraintName="fk_station_sensor_sensors_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sensor"/>
+        
+    </changeSet>
+</databaseChangeLog>

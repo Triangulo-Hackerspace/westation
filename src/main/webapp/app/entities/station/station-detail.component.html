@@ -1,0 +1,52 @@
+
+<div *ngIf="station">
+    <h2><span jhiTranslate="westationApp.station.detail.title">Station</span> {{station.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="westationApp.station.name">Name</span></dt>
+        <dd>
+            <span>{{station.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="westationApp.station.port">Port</span></dt>
+        <dd>
+            <span>{{station.port}}</span>
+        </dd>
+        <dt><span jhiTranslate="westationApp.station.sufix">Sufix</span></dt>
+        <dd>
+            <span>{{station.sufix}}</span>
+        </dd>
+        <dt><span jhiTranslate="westationApp.station.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{station.longitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="westationApp.station.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{station.latitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="westationApp.station.ip">Ip</span></dt>
+        <dd>
+            <span>{{station.ip}}</span>
+        </dd>
+        <dt><span jhiTranslate="westationApp.station.sensor">Sensor</span></dt>
+        <dd>
+            <span *ngFor="let sensor of station.sensors; let last = last">
+                <a [routerLink]="['/sensor', sensor?.id ]">{{sensor.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'station/'+ station.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,92 @@
+<div [ngSwitch]="isAuthenticated()">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+
+            </h3>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Estaçōes</h3>
+        </div>
+        <div class="col-sm-12">
+            <agm-map [latitude]="-18.9228327" [longitude]="-48.2431651" [zoom]="12">
+                <agm-marker *ngFor="let st of stations" [latitude]="st.latitude" [longitude]="st.longitude">
+                    <agm-info-window>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">{{st.name}}</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">Latitude:{{st.latitude}}</div>
+                                    <div class="col-sm-12">Longitude:{{st.longitude}}</div>
+                                    <div class="col-sm-12">Sensores
+                                        <div class="col-sm-12"></div>
+                                        <div *ngFor="let sen of st.sensors">
+                                            <div class="col-sm-12" >
+                                                {{getSensorName(sen.id)+':'+(observables[st.sufix+'/'+getSensorTopic(sen.id)] | async)?.payload.toString().split(":",2)[1]}}
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </agm-info-window>
+                </agm-marker>
+            </agm-map>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Estaçāo</th>
+                <th *ngFor="let sen of sensors ">{{sen.name}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let st of stations ">
+                <td class="col-sm-6 col-lg-6">{{st.name}}</td>
+                <td class="col-sm-6 col-lg-6" *ngFor="let sen of sensors">
+                    {{(observables[st.sufix+'/'+sen.topic] | async)?.payload.toString().split(":",2)[1]}}
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4"><i class="fa fa-circle" [ngClass]="(state | async) | stateToClass"></i>
+                    {{(state | async) | stateToString}}
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+
+
+    </div>
+</div>
+<div *ngIf="!isAuthenticated()">
+    Favor logar para visualizar os dados em tempo real!
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Filter</th>
+            <th>TimeStamp</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let filter of observables | keys | orderBy: filter ">
+            <td class="col-sm-6">
+                <button
+                    *ngIf="!!observables[filter]"
+                    (click)="unsubscribe(filter)"
+                    class="btn btn-xs btn-danger"><i class="fa fa-times"></i>
+                </button>
+                {{filter}}
+            </td>
+            <td class="col-sm-3">{{(observables[filter] | async)?.payload.toString().split(":",2)[0]}}</td>
+            <td class="col-sm-3">{{(observables[filter] | async)?.payload.toString().split(":",2)[1]}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

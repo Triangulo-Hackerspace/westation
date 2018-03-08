@@ -1,0 +1,34 @@
+
+<div *ngIf="sensor">
+    <h2><span jhiTranslate="westationApp.sensor.detail.title">Sensor</span> {{sensor.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="westationApp.sensor.name">Name</span></dt>
+        <dd>
+            <span>{{sensor.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="westationApp.sensor.topic">Topic</span></dt>
+        <dd>
+            <span>{{sensor.topic}}</span>
+        </dd>
+        <dt><span jhiTranslate="westationApp.sensor.threshold">Threshold</span></dt>
+        <dd>
+            <span>{{sensor.threshold}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sensor/'+ sensor.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
